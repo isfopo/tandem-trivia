@@ -18,7 +18,8 @@ export const App = () => {
 
   const [canRestart, setCanRestart] = useState(false);
   const [canNext, setCanNext] = useState(true);
-  const [showHome, setShowHome] = useState(true);
+  const [showHome, setShowHome] = useState(false);
+  const [showFinal, setShowFinal] = useState(false);
 
   const getQuestion = () => {
 
@@ -54,17 +55,24 @@ export const App = () => {
         <HomeDisplay /> 
         :
         <>
-          <ScoreDisplay score={score} />
-          
-          <ProgressBar progress={progress}/>
-
-          <QuestionDisplay question={trivia[currentQuestion].question} />
-
-          <ChoiceDisplay 
-            correct={trivia[currentQuestion].correct} 
-            incorrect={trivia[currentQuestion].incorrect} 
-            increaseScore={() => increaseScore()}
+          <ScoreDisplay 
+            score={score} 
+            showFinal={showFinal}
           />
+                     
+          { !showFinal &&
+            <>
+              <ProgressBar progress={progress}/>
+
+              <QuestionDisplay question={trivia[currentQuestion].question} />
+
+              <ChoiceDisplay 
+                correct={trivia[currentQuestion].correct} 
+                incorrect={trivia[currentQuestion].incorrect} 
+                increaseScore={() => increaseScore()}
+              />
+            </>
+          }
     
           <BottomBar 
             canRestart={canRestart} 
