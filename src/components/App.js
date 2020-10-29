@@ -8,7 +8,7 @@ import { BottomBar } from "./BottomBar.js";
 
 import trivia from "../Apprentice_TandemFor400_Data.json";
 
-import './App.css';
+import '../styles/App.css';
 
 export const App = () => {
 
