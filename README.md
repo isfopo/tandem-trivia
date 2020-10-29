@@ -3,7 +3,7 @@
     At Tandem, we love to learn and have fun and what better way to do that than to play a round of trivia. One of our favorite ways to wait while our test suite is running is to hop over to the #games channel on Slack and play a quick round of trivia. Playing trivia isn’t just a fun way to learn something new but also a great way to take a little break from a normal work task.
 
     While we’re all knowledgeable in our own right, only one person can be crowned trivia champion with the highest score. Your goal is to create an application that others will be able to use in order to help improve their trivia skills.
-    
+
     Train to improve your trivia knowledge by creating your own trivia training app!
 
 ## Goal
@@ -15,11 +15,11 @@
     We would also like to see a README which includes any information about how to run the code, any known issues or complexity we should look out for, and any additional features you would like to have added to make your trivia app even more awesome.
 
 ## Assumptions
-    [ ] A round of trivia has 10 Questions
-    [ ] All questions are multiple-choice questions
-    [ ] Your score does not need to update in real time
-    [ ] Results can update on form submit, button click, or any interaction you choose
-    [ ] We will provide you with the trivia data such as the questions, correct and incorrect answers via a JSON file.
+    * A round of trivia has 10 Questions
+    * All questions are multiple-choice questions
+    * Your score does not need to update in real time
+    * Results can update on form submit, button click, or any interaction you choose
+    * We will provide you with the trivia data such as the questions, correct and incorrect answers via a JSON file.
 
 ## Acceptance Criteria
     [ ] A user can view questions.
