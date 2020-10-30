@@ -15,6 +15,7 @@ export const App = () => {
   const [score, setScore] = useState(0);
   const [progress, setProgress] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [questionsInSession, setQuestionsInSession] = useState([]);
 
   const [canRestart, setCanRestart] = useState(false);
   const [canNext, setCanNext] = useState(true);
@@ -22,11 +23,25 @@ export const App = () => {
   const [showFinal, setShowFinal] = useState(false);
 
   const getQuestion = () => {
+    let nextQuestion = getRandomIndexNoRepeat();
 
-    // choose random number between 0 and 9 that does not repeat
+    if ( questionsInSession.length < 10 ) {
+      increaseProgress();
+      setQuestionsInSession(questionsInSession.push(nextQuestion));
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setShowFinal(true);
+    }
+  }
 
-    increaseProgress();
-    setCurrentQuestion();
+  const getRandomIndexNoRepeat = () => {
+    let newQuestion = Math.floor(Math.random() * trivia.length)
+
+    questionsInSession.forEach(questionNumber => {
+      if (questionNumber === newQuestion) {
+        return getRandomIndexNoRepeat(); // this recursion might not work
+      }
+    })
   }
 
   const increaseScore = () => {
@@ -38,6 +53,8 @@ export const App = () => {
   } 
 
   const restart = () => {
+    setProgress(0);
+    setShowFinal(false);
     setShowHome(true);
   }
 
@@ -45,7 +62,6 @@ export const App = () => {
     if (showHome) {
       setShowHome(false);
     }
-
     getQuestion();
   }
 
