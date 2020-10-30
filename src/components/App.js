@@ -13,21 +13,18 @@ import '../styles/App.css';
 export const App = () => {
 
   const [score, setScore] = useState(0);
-  const [progress, setProgress] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questionsInSession, setQuestionsInSession] = useState([]);
 
-  const [canRestart, setCanRestart] = useState(false);
   const [canNext, setCanNext] = useState(true);
-  const [showHome, setShowHome] = useState(false);
+  const [showHome, setShowHome] = useState(true);
   const [showFinal, setShowFinal] = useState(false);
 
   const getQuestion = () => {
     let nextQuestion = getRandomIndexNoRepeat();
 
     if ( questionsInSession.length < 10 ) {
-      increaseProgress();
-      setQuestionsInSession(questionsInSession.push(nextQuestion));
+      setQuestionsInSession([...questionsInSession, nextQuestion]);
       setCurrentQuestion(nextQuestion);
     } else {
       setShowFinal(true);
@@ -37,23 +34,20 @@ export const App = () => {
   const getRandomIndexNoRepeat = () => {
     let newQuestion = Math.floor(Math.random() * trivia.length)
 
-    questionsInSession.forEach(questionNumber => {
-      if (questionNumber === newQuestion) {
-        return getRandomIndexNoRepeat(); // this recursion might not work
-      }
-    })
+    if (questionsInSession.includes(newQuestion)) {
+      return getRandomIndexNoRepeat();
+    } else {
+      return newQuestion;
+    }
   }
 
   const increaseScore = () => {
     setScore(score + 1);
   }
 
-  const increaseProgress = () => {
-    setProgress(progress + 1);
-  } 
-
   const restart = () => {
-    setProgress(0);
+    setCurrentQuestion(0);
+    setQuestionsInSession([]);
     setShowFinal(false);
     setShowHome(true);
   }
@@ -78,7 +72,7 @@ export const App = () => {
                      
           { !showFinal &&
             <>
-              <ProgressBar progress={progress}/>
+              <ProgressBar progress={questionsInSession.length}/>
 
               <QuestionDisplay question={trivia[currentQuestion].question} />
 
@@ -89,15 +83,14 @@ export const App = () => {
               />
             </>
           }
-    
-          <BottomBar 
-            canRestart={canRestart} 
-            restart={() => restart()}
-            canNext={canNext}
-            next={() => next()}
-          />
         </>
       }
+      <BottomBar 
+        canRestart={ !showHome }
+        restart={() => restart()}
+        canNext={canNext} // do not show when asking question
+        next={() => next()}
+      />
     </div>
   );
 }
