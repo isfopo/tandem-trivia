@@ -1,3 +1,5 @@
+To run, clone project and `cd` in to the folder. Then run `npm install` and `npm run` to open the page.
+
 ## Prompt: Tandem for 400!
 
 At Tandem, we love to learn and have fun and what better way to do that than to play a round of trivia. One of our favorite ways to wait while our test suite is running is to hop over to the #games channel on Slack and play a quick round of trivia. Playing trivia isn’t just a fun way to learn something new but also a great way to take a little break from a normal work task.
@@ -24,11 +26,11 @@ We would also like to see a README which includes any information about how to r
 
 ## Acceptance Criteria
 
-- [ ] A user can view questions.
-- [ ] Questions with their multiple choice options must be displayed one at a time. Questions should not repeat in a round.
-- [ ] A user can select only 1 answer out of the 4 possible answers.
-- [ ] The correct answer must be revealed after a user has submitted their answer A user can see the score they received at the end of the round
-
-
+- [x] A user can view questions.
+- [x] Questions with their multiple choice options must be displayed one at a time. 
+- [x] Questions should not repeat in a round.
+- [x] A user can select only 1 answer out of the 4 possible answers.
+- [x] The correct answer must be revealed after a user has submitted their answer.
+- [x] A user can see the score they received at the end of the round.
 
 [Link to design](https://xd.adobe.com/view/73d9926c-f658-435e-ab86-3d81a3d43a09-268a/)
