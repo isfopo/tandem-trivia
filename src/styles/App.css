@@ -81,9 +81,9 @@
 }
 
 .incorrect {
-  background-color: #ffffff;
-  border-color: black;
-  color: #000406;
+  background-color: #ffb5b5;
+  border-color: rgb(181, 0, 0);
+  color: #d11717;
   pointer-events: none;
 }
 

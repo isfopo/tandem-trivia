@@ -15,6 +15,7 @@ export const App = () => {
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [totalQuestions] = useState(10);
+  const [selected, setSelected] = useState(-1);
   const [questionsInSession, setQuestionsInSession] = useState([]);
 
   const [isAsking, setIsAsking] = useState(false);
@@ -22,6 +23,14 @@ export const App = () => {
   const [showFinal, setShowFinal] = useState(false);
 
   const [order, setOrder] = useState([0,1,2,3])
+
+  const handleSetIsAsking = value => {
+    setIsAsking(value);
+  }
+
+  const handleSetSelected = value => {
+    setSelected(value);
+  }
 
   const shuffleOrder =  () => {
       let array = order;
@@ -76,6 +85,7 @@ export const App = () => {
     if (showHome) {
       setShowHome(false);
     }
+    setSelected(-1);
     setIsAsking(true);
     getQuestion();
     shuffleOrder();
@@ -104,8 +114,10 @@ export const App = () => {
                 increaseScore={() => increaseScore()}
                 next={() => next()}
                 isAsking={isAsking}
-                setIsAsking={() => setIsAsking()}
+                setIsAsking={handleSetIsAsking}
                 order={order}
+                selected={selected}
+                setSelected={handleSetSelected}
               />
             </>
           }
