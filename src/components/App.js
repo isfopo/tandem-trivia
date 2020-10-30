@@ -21,6 +21,23 @@ export const App = () => {
   const [showHome, setShowHome] = useState(true);
   const [showFinal, setShowFinal] = useState(false);
 
+  const [order, setOrder] = useState([0,1,2,3])
+
+  const shuffleOrder =  () => {
+      let array = order;
+  
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * i)
+          const temp = array[i]
+          array[i] = array[j]
+          array[j] = temp
+      }
+
+      if (isAsking) {
+          setOrder(array);
+      }
+  }
+
   const getQuestion = () => {
     let nextQuestion = getRandomIndexNoRepeat(trivia.length);
 
@@ -47,6 +64,7 @@ export const App = () => {
   }
 
   const restart = () => {
+    setScore(0);
     setCurrentQuestion(0);
     setQuestionsInSession([]);
     setIsAsking(false);
@@ -60,6 +78,7 @@ export const App = () => {
     }
     setIsAsking(true);
     getQuestion();
+    shuffleOrder();
   }
 
   return (
@@ -86,6 +105,7 @@ export const App = () => {
                 next={() => next()}
                 isAsking={isAsking}
                 setIsAsking={() => setIsAsking()}
+                order={order}
               />
             </>
           }

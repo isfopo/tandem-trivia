@@ -2,35 +2,18 @@ import React, { useState, useEffect } from 'react'
 
 export const ChoiceDisplay = props => {
 
-    const [order, setOrder] = useState([0,1,2,3])
-
-    useEffect(() => {
-        return () => {
-            let array = order;
-        
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * i)
-                const temp = array[i]
-                array[i] = array[j]
-                array[j] = temp
-            }
-
-            setOrder(array);
-        }
-    }, [props.correct, order])
-
     const orderStyle = [
         {
-            order: `${order[0]}`
+            order: `${props.order[0]}`
         },
         {
-            order: `${order[1]}`
+            order: `${props.order[1]}`
         },
         {
-            order: `${order[2]}`
+            order: `${props.order[2]}`
         },
         {
-            order: `${order[3]}`
+            order: `${props.order[3]}`
         },
     ]
 
@@ -45,21 +28,26 @@ export const ChoiceDisplay = props => {
         <div className="choiceDisplay">
 
             <button 
+                className="btn"
                 onClick={() => submitAnswer(true)}
                 style={orderStyle[0]} >{props.correct}</button>
 
             <button 
+                className="btn"
                 onClick={() => submitAnswer(false)}
                 style={orderStyle[1]} >{props.incorrect[0]}</button>
 
             <button 
+                className="btn" 
                 onClick={() => submitAnswer(false)}
                 style={orderStyle[2]} >{props.incorrect[1]}</button>
 
-            <button 
-                onClick={() => submitAnswer(false)}
-                style={orderStyle[3]} >{props.incorrect[2]}</button>
-            
+            { props.incorrect.length === 3 &&
+                <button 
+                    className="btn"
+                    onClick={() => submitAnswer(false)}
+                    style={orderStyle[3]} >{props.incorrect[2]}</button>
+            }
         </div>
     )
 }
