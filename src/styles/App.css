@@ -3,3 +3,8 @@
 }
 
 /* finalScoreDisplay and scoreDisplay classes to make score bigger and centered */
+
+
+.choiceDisplay {
+  display: flex;
+}

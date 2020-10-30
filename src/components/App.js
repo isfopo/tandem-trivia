@@ -22,7 +22,7 @@ export const App = () => {
   const [showFinal, setShowFinal] = useState(false);
 
   const getQuestion = () => {
-    let nextQuestion = getRandomIndexNoRepeat();
+    let nextQuestion = getRandomIndexNoRepeat(trivia.length);
 
     if ( questionsInSession.length < totalQuestions ) {
       setQuestionsInSession([...questionsInSession, nextQuestion]);
@@ -32,11 +32,11 @@ export const App = () => {
     }
   }
 
-  const getRandomIndexNoRepeat = () => {
-    let newQuestion = Math.floor(Math.random() * trivia.length)
+  const getRandomIndexNoRepeat = range => {
+    let newQuestion = Math.floor(Math.random() * range)
 
     if (questionsInSession.includes(newQuestion)) {
-      return getRandomIndexNoRepeat();
+      return getRandomIndexNoRepeat(range);
     } else {
       return newQuestion;
     }
