@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export const ChoiceDisplay = props => {
 
-    const [order, setOrder] = useState([1,2,3,0]) // randomize this array when new question is asked
+    const [order, setOrder] = useState([0,1,2,3])
 
     useEffect(() => {
         return () => {
@@ -14,7 +14,7 @@ export const ChoiceDisplay = props => {
                 array[i] = array[j]
                 array[j] = temp
             }
-    
+
             setOrder(array);
         }
     }, [props.correct, order])
@@ -34,16 +34,31 @@ export const ChoiceDisplay = props => {
         },
     ]
 
+    const submitAnswer = isCorrect => {
+        if (isCorrect && props.isAsking) {
+            props.increaseScore();
+        }
+        props.setIsAsking(false);
+    }
+
     return (
         <div className="choiceDisplay">
 
-            <button style={orderStyle[0]} >{props.correct}</button>
+            <button 
+                onClick={() => submitAnswer(true)}
+                style={orderStyle[0]} >{props.correct}</button>
 
-            <button style={orderStyle[1]} >{props.incorrect[0]}</button>
+            <button 
+                onClick={() => submitAnswer(false)}
+                style={orderStyle[1]} >{props.incorrect[0]}</button>
 
-            <button style={orderStyle[2]} >{props.incorrect[1]}</button>
+            <button 
+                onClick={() => submitAnswer(false)}
+                style={orderStyle[2]} >{props.incorrect[1]}</button>
 
-            <button style={orderStyle[3]} >{props.incorrect[2]}</button>
+            <button 
+                onClick={() => submitAnswer(false)}
+                style={orderStyle[3]} >{props.incorrect[2]}</button>
             
         </div>
     )

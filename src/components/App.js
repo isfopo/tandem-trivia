@@ -17,7 +17,7 @@ export const App = () => {
   const [totalQuestions] = useState(10);
   const [questionsInSession, setQuestionsInSession] = useState([]);
 
-  const [canNext, setCanNext] = useState(true);
+  const [isAsking, setIsAsking] = useState(false);
   const [showHome, setShowHome] = useState(true);
   const [showFinal, setShowFinal] = useState(false);
 
@@ -49,6 +49,7 @@ export const App = () => {
   const restart = () => {
     setCurrentQuestion(0);
     setQuestionsInSession([]);
+    setIsAsking(false);
     setShowFinal(false);
     setShowHome(true);
   }
@@ -57,6 +58,7 @@ export const App = () => {
     if (showHome) {
       setShowHome(false);
     }
+    setIsAsking(true);
     getQuestion();
   }
 
@@ -81,6 +83,9 @@ export const App = () => {
                 correct={trivia[currentQuestion].correct} 
                 incorrect={trivia[currentQuestion].incorrect} 
                 increaseScore={() => increaseScore()}
+                next={() => next()}
+                isAsking={isAsking}
+                setIsAsking={() => setIsAsking()}
               />
             </>
           }
@@ -89,7 +94,7 @@ export const App = () => {
       <BottomBar 
         canRestart={ !showHome }
         restart={() => restart()}
-        canNext={canNext} // do not show when asking question
+        canNext={!isAsking}
         next={() => next()}
       />
     </div>
