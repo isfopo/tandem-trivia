@@ -28,23 +28,23 @@ export const ChoiceDisplay = props => {
         <div className="choiceDisplay">
 
             <button 
-                className="btn"
+                className={`btn ${ !props.isAsking && "correct"}`}
                 onClick={() => submitAnswer(true)}
                 style={orderStyle[0]} >{props.correct}</button>
 
             <button 
-                className="btn"
+                className={`btn ${ !props.isAsking && "disabled"}`}
                 onClick={() => submitAnswer(false)}
                 style={orderStyle[1]} >{props.incorrect[0]}</button>
 
             <button 
-                className="btn" 
+                className={`btn ${ !props.isAsking && "disabled"}`} 
                 onClick={() => submitAnswer(false)}
                 style={orderStyle[2]} >{props.incorrect[1]}</button>
 
             { props.incorrect.length === 3 &&
                 <button 
-                    className="btn"
+                    className={`btn ${ !props.isAsking && "disabled"}`}
                     onClick={() => submitAnswer(false)}
                     style={orderStyle[3]} >{props.incorrect[2]}</button>
             }

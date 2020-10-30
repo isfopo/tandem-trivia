@@ -31,7 +31,7 @@
   transition: background-color .3s;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover {
   background-color: #c7c7c7;
 }
 
@@ -71,4 +71,25 @@
   padding-top: 120%;
   
   transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+.correct {
+  background-color: #e7ffdf;
+  border-color: #6CFF36;
+  color: #0eae00;
+  pointer-events: none;
+}
+
+.incorrect {
+  background-color: #ffffff;
+  border-color: black;
+  color: #000406;
+  pointer-events: none;
+}
+
+.disabled {
+  background-color: #ffffff;
+  border-color: #d0d0d0;
+  color: #989898;
+  pointer-events: none;
 }
