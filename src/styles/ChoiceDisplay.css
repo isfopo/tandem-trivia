@@ -1,11 +1,14 @@
 .choiceDisplay {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    height: 40vh;
   }
   
   .btn {
     position: relative;
   
+    font: normal normal medium 24px/16px Roboto;
     display: block;
     margin: 30px auto;
     padding: 12px;
@@ -14,7 +17,7 @@
   
     border-width: 1px;
     outline: none;
-    border-radius: 2px;
+    border-radius: 5px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
     
     background-color: #ffffff;
@@ -69,13 +72,13 @@
   .correct {
     background-color: #e7ffdf;
     border-color: #6CFF36;
-    color: #0eae00;
+    color: #0f7003;
     pointer-events: none;
   }
   
   .incorrect {
-    background-color: #ffb5b5;
-    border-color: rgb(181, 0, 0);
+    background-color: #ffd9d9;
+    border-color: #d11717;
     color: #d11717;
     pointer-events: none;
   }
