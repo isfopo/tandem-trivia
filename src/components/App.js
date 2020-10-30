@@ -14,6 +14,7 @@ export const App = () => {
 
   const [score, setScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [totalQuestions] = useState(10);
   const [questionsInSession, setQuestionsInSession] = useState([]);
 
   const [canNext, setCanNext] = useState(true);
@@ -23,7 +24,7 @@ export const App = () => {
   const getQuestion = () => {
     let nextQuestion = getRandomIndexNoRepeat();
 
-    if ( questionsInSession.length < 10 ) {
+    if ( questionsInSession.length < totalQuestions ) {
       setQuestionsInSession([...questionsInSession, nextQuestion]);
       setCurrentQuestion(nextQuestion);
     } else {
@@ -72,7 +73,7 @@ export const App = () => {
                      
           { !showFinal &&
             <>
-              <ProgressBar progress={questionsInSession.length}/>
+              <ProgressBar progress={((questionsInSession.length - 1) / totalQuestions) * 100}/>
 
               <QuestionDisplay question={trivia[currentQuestion].question} />
 
